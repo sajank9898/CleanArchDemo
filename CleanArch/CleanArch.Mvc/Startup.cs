@@ -12,6 +12,7 @@ using CleanArch.Mvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CleanArch.Infra.Data.Context;
 
 namespace CleanArch.Mvc
 {
@@ -32,6 +33,12 @@ namespace CleanArch.Mvc
                     Configuration.GetConnectionString("LocalSystemDBConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<CleanArchDBContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("CleanArchDBConnection")));
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
