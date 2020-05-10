@@ -17,7 +17,7 @@ namespace CleanArch.Infra.Data.Repository
             _context = context;
         }
 
-        public IEnumerable<Course> getCourses()
+        public IEnumerable<Course> GetCourses()
         {
             return _context.Courses; 
         }
